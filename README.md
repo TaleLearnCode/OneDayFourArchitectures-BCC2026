@@ -39,7 +39,6 @@ Before the workshop, please ensure the following are installed and verified:
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
-- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) (authenticated to an active Azure subscription)
 - [Visual Studio 2022+](https://visualstudio.microsoft.com/) or [VS Code](https://code.visualstudio.com/) with C# Dev Kit
 - EF Core CLI: `dotnet tool install --global dotnet-ef`
 - Git
