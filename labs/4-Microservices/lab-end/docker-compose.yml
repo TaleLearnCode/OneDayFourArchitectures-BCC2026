@@ -1,0 +1,89 @@
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: src/CiphersGrid.Api/Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+      - ReverseProxy__Clusters__crews__Destinations__crew-service__Address=http://crew-service:8080
+      - ReverseProxy__Clusters__races__Destinations__race-service__Address=http://race-service:8080
+      - ReverseProxy__Clusters__telemetry__Destinations__telemetry-service__Address=http://telemetry-service:8080
+      - ReverseProxy__Clusters__alerts__Destinations__alert-service__Address=http://alert-service:8080
+    depends_on:
+      - crew-service
+      - race-service
+      - telemetry-service
+      - alert-service
+    networks:
+      - ciphers-grid-network
+
+  crew-service:
+    build:
+      context: .
+      dockerfile: src/CiphersGrid.CrewService/Dockerfile
+    ports:
+      - "5100:8080"
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__CrewDb=Data Source=/app/data/crew.db
+    volumes:
+      - crew-data:/app/data
+    networks:
+      - ciphers-grid-network
+
+  race-service:
+    build:
+      context: .
+      dockerfile: src/CiphersGrid.RaceService/Dockerfile
+    ports:
+      - "5200:8080"
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__RaceDb=Data Source=/app/data/race.db
+      - ServiceUrls__AlertService=http://alert-service:8080
+    volumes:
+      - race-data:/app/data
+    depends_on:
+      - alert-service
+    networks:
+      - ciphers-grid-network
+
+  telemetry-service:
+    build:
+      context: .
+      dockerfile: src/CiphersGrid.TelemetryService/Dockerfile
+    ports:
+      - "5250:8080"
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__TelemetryDb=Data Source=/app/data/telemetry.db
+    volumes:
+      - telemetry-data:/app/data
+    networks:
+      - ciphers-grid-network
+
+  alert-service:
+    build:
+      context: .
+      dockerfile: src/CiphersGrid.AlertService/Dockerfile
+    ports:
+      - "5300:8080"
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__AlertDb=Data Source=/app/data/alert.db
+    volumes:
+      - alert-data:/app/data
+    networks:
+      - ciphers-grid-network
+
+volumes:
+  crew-data:
+  race-data:
+  telemetry-data:
+  alert-data:
+
+networks:
+  ciphers-grid-network:
+    driver: bridge

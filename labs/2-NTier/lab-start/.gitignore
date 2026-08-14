@@ -1,0 +1,17 @@
+# SQLite databases
+*.db
+*.db-shm
+*.db-wal
+
+# Build artifacts
+bin/
+obj/
+.vs/
+
+# IDE
+.vscode/
+.idea/
+
+# User files
+*.user
+appsettings.local.json

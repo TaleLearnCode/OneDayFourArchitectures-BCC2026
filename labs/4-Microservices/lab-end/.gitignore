@@ -1,0 +1,10 @@
+bin/
+obj/
+*.db
+*.dll
+*.pdb
+.vs/
+.vscode/
+node_modules/
+dist/
+*.user
