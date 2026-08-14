@@ -24,12 +24,12 @@ This isn't a lecture. You're rolling with the crew. By the end of the day, you'l
 
 ## Workshop Modules
 
-| Module           | Topic              | Description                                                  |
-| ---------------- | ------------------ | ------------------------------------------------------------ |
-| Monolith         | **Dom's Garage**   | Single-deployable monolith: cars, mechanics, jobs, and parts inventory |
-| N-Tier           | **Toretto Motors** | Layered N-Tier with strict boundary enforcement *(coming soon)* |
-| Modular Monolith | **The Circuit**    | Domain-bounded modules with explicit contracts *(coming soon)* |
-| Microservices    | **Cipher's Grid**  | Distributed, independently deployable services *(coming soon)* |
+| Module                                      | Topic              | Description                                                  |
+| ------------------------------------------- | ------------------ | ------------------------------------------------------------ |
+| [Monolith](labs/1-Monolith/README.md)       | **Dom's Garage**   | Single-deployable monolith: cars, mechanics, jobs, and parts inventory |
+| [N-Tier](labs/2-NTier/README.md)            | **Toretto Motors** | Layered N-Tier with strict boundary enforcement *(coming soon)* |
+| [Modular Monolith](labs/3-ModularMonoliths) | **The Circuit**    | Domain-bounded modules with explicit contracts *(coming soon)* |
+| [Microservices](labs/4-Microservices)       | **Cipher's Grid**  | Distributed, independently deployable services *(coming soon)* |
 
 ---
 
